@@ -12,7 +12,10 @@ To spin up the VM
 just run
 ```
 
-You can clean the VM with `just clean`
+- User: `guest`
+- Pass: `guest`
+
+You can also clean the VM with `just clean`
 
 ## Additional Resources
 

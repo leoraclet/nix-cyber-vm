@@ -1,12 +1,8 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     python313Packages.impacket
-    python313Packages.bloodhound-py
     python313Packages.scapy
-    python313Packages.ldapdomaindump
 
-    bloodhound
-    bloodhound-py
     nmap
     assetfinder
     subfinder

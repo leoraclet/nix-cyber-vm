@@ -1,6 +1,5 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    python313Packages.opencv4Full
     binwalk
     audacity
     sonic-visualiser

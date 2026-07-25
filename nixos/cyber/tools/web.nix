@@ -11,7 +11,6 @@
     sqlmap
     whatweb
     gobuster
-    dirb
     wpscan
     jwt-hack
   ];

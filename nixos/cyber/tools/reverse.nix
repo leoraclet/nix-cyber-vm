@@ -5,16 +5,13 @@
     python313Packages.angrop
     python313Packages.distorm3
 
-    elf-info
     checksec
     binwalk
-    pev
     hopper
     binaryninja-free
     ghidra-bin
     ida-free
     cutter
-    cutterPlugins.rz-ghidra
     imhex
     jadx
     apk-tools
@@ -23,7 +20,6 @@
     pwntools
     radare2
     rizin
-    rizinPlugins.rz-ghidra
     dex2jar
     quark-engine
   ];

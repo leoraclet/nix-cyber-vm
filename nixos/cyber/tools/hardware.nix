@@ -6,7 +6,6 @@
     sigrok-cli
     libsigrok
     libsigrokdecode
-    smuview
     binwalk
     sigdigger
     urh
@@ -18,7 +17,6 @@
     qemu-user
     gdb
     imhex
-    saleae-logic
     saleae-logic-2
   ];
 }

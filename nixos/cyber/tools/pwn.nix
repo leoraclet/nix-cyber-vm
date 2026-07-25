@@ -15,7 +15,6 @@
 
     ltrace
     strace
-    procdump
     lldb
     nasm
     ropgadget
@@ -23,7 +22,6 @@
     frida-tools
     capstone
     unicorn
-    unicorn-angr
     gdb
     imhex
     ida-free

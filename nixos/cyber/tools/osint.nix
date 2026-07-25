@@ -10,5 +10,7 @@
     octosuite
     ghdorker
     qgis
+    checkpwn
+    metabigor
   ];
 }

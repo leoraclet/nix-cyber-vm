@@ -6,4 +6,7 @@
   };
 
   services.vnstat.enable = true;
+
+  # Enable ssh
+  services.sshd.enable = true;
 }

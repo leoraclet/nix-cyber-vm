@@ -5,8 +5,8 @@
     ./cyber
   ];
 
-  # Enable ssh
-  services.sshd.enable = true;
+  # Enable desktop
+  desktop.enable = false;
 
   system.stateVersion = "22.11";
 }

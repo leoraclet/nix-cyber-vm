@@ -11,7 +11,4 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # Apps
-  services.flatpak.enable = true;
 }

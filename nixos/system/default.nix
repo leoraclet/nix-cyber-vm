@@ -8,7 +8,6 @@
     ./env.nix
     ./desktop.nix
     ./network.nix
-    ./core.nix
     ./direnv.nix
   ];
 }

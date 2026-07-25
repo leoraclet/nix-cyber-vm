@@ -1,24 +1,36 @@
-{ pkgs, ... }: {
-  environment.systemPackages = with pkgs; [
-    python313Packages.impacket
-    python313Packages.scapy
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
+  options = {
+    network.enable = lib.mkEnableOption "Enable cryptanalysis tools";
+  };
 
-    nmap
-    assetfinder
-    subfinder
-    wireshark
-    tshark
-    tor
-    torsocks
-    wifite2
-    aircrack-ng
-    airgeddon
-    macchanger
-    amass
-    bettercap
-    ettercap
-    tshark
-    dnsmasq
-    proxychains-ng
-  ];
+  config = lib.mkIf config.network.enable {
+    environment.systemPackages = with pkgs; [
+      python313Packages.impacket
+      python313Packages.scapy
+
+      nmap
+      assetfinder
+      subfinder
+      wireshark
+      tshark
+      tor
+      torsocks
+      wifite2
+      aircrack-ng
+      airgeddon
+      macchanger
+      amass
+      bettercap
+      ettercap
+      tshark
+      dnsmasq
+      proxychains-ng
+    ];
+  };
 }

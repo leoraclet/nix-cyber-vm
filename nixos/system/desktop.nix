@@ -10,5 +10,11 @@
       displayManager.autoLogin.user = "guest";
       xserver.videoDrivers = [ "qxl" ];
     };
+
+    hardware = {
+      graphics = {
+        enable = true;
+      };
+    };
   };
 }

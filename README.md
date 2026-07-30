@@ -6,17 +6,22 @@ Inspired by [this post](https://jeancharles.quillet.org/posts/2023-01-16-Basic-n
 
 ## Usage
 
-To spin up the VM
+To spin up the VM using [**just**](https://github.com/casey/just)
 
-```shell
+```bash
 just run
 ```
 
-- User: `guest`
-- Pass: `guest`
+- Username: `guest`
+- Password: `guest`
 
-You can also clean the VM with `just clean`
+You can also clean the VM using
 
-## Additional Resources
+```bash
+just clean
+```
 
-For a lightweight hacking environment without a full VM, check out my [Nix Cyber Templates repository](https://github.com/leoraclet/nix-cyber-templates).
+## Resources
+
+For lightweight hacking environments without a full VM,
+check out my [Nix Cyber Templates repository](https://github.com/leoraclet/nix-cyber-templates).

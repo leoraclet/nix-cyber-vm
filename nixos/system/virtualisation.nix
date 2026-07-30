@@ -1,6 +1,10 @@
 { ... }: {
   # Options for the screen
   virtualisation.vmVariant = {
+    virtualisation.resolution = {
+      x = 1920;
+      y = 1080;
+    };
     virtualisation = {
       memorySize = 4096; # Use 2048MiB memory.
       cores = 4;

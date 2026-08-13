@@ -4,7 +4,9 @@
 
 A simple and ready-to-use flake template to create a cybersecurity-oriented virtual
 machine.
+
 This was inspired by [this post](https://jeancharles.quillet.org/posts/2023-01-16-Basic-nix-vm-for-just-anything.html)
+and my needs for quick cyber VM during CTF.
 
 ## Usage
 
@@ -28,14 +30,22 @@ nix run .#microvm
 just run
 ```
 
-- Usernames: `test`, `root`
-- Passwords: `test`, `root`
+- Username: `test`
+- Password: Same as username
 
 You can clean the VM using:
 
 ```bash
 just clean
 ```
+
+## Customization
+
+You can fully customize this VM's configuration by adding modules and updating the
+[`configuration.nix`](./modules/hosts/configuration.nix) file.
+
+You can also set user and other global options in the [`options.nix`](./modules/nixos/options.nix)
+file.
 
 ## Libraries
 

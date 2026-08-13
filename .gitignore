@@ -8,4 +8,6 @@ result-*
 # Ignore NixOS interactive test driver history
 **/.nixos-test-history
 
-nixos.qcow2
+*.qcow2
+*.socket
+var.img

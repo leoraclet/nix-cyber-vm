@@ -1,18 +1,19 @@
+alias run := vm
+
 default:
-    @just --list
+    @just --choose --unsorted
 
-build:
-    nix build ./#nixosConfigurations.vm.config.system.build.vm
+show:
+    nix flake show --no-write-lock-file
 
-run:
-    @just build
-    QEMU_NET_OPTS="hostfwd=tcp::2222-:22" ./result/bin/run-nixos-vm
+vm:
+    nix run .#microvm
 
-# To run VM directly in term
-term:
-    @just build
-    QEMU_KERNEL_PARAMS=console=ttyS0 ./result/bin/run-nixos-vm -nographic; reset
+test: clean
+    nix run .#microvm
 
 clean:
-    rm -rf ./nixos.qcow2
-    rm -rf ./result/
+    rm -f ./*.socket
+    rm -f ./*.qcow2
+    rm -f ./result
+    rm -f ./var.img

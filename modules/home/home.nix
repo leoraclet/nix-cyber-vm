@@ -3,6 +3,7 @@
   flake.modules.nixos.hmModule = {
     imports = [
       inputs.home-manager.nixosModules.home-manager
+      inputs.self.modules.generic.userConfig
     ];
 
     home-manager = {
@@ -12,25 +13,20 @@
       backupFileExtension = "hm_bak~";
       overwriteBackup = true;
       sharedModules = [
+        inputs.self.modules.generic.userConfig
         (
           { nixosConfig, config, ... }:
           {
-            # home.enableNixpkgsReleaseCheck = false;
             programs.home-manager.enable = true;
             home = {
               username = config.myConfig.userName;
-              stateVersion = nixosConfig.system.stateVersion;
-              # Make programs use XDG directories whenever supported
               preferXdgDirectories = true;
-              homeDirectory =
-                if config.myConfig.userName != "root" then "/home/${config.myConfig.userName}" else "/root";
+              homeDirectory = "/home/${config.myConfig.userName}";
+              stateVersion = nixosConfig.system.stateVersion;
             };
           }
         )
       ];
-      extraSpecialArgs = {
-        inherit inputs;
-      };
     };
   };
 }

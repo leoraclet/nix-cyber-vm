@@ -1,6 +1,9 @@
-{
+{ self, ... }: {
   flake.modules.nixos.lxqt-desktop = { ... }: {
-    hardware.graphics.enable = true;
+    imports = [
+      self.modules.nixos.desktop
+    ];
+
     services.xserver = {
       enable = true;
       desktopManager = {

@@ -11,7 +11,7 @@
           type = lib.types.str;
           default = lib.mkDefault "26.05";
         };
-        mountpoint = lib.mkOption {
+        mountPoint = lib.mkOption {
           type = lib.types.str;
           default = lib.mkDefault "/home";
         };
@@ -21,7 +21,7 @@
         myConfig = {
           userName = "test";
           stateVersion = "26.05";
-          # mountpoint = "/home/leonne";
+          mountPoint = "/home/leonne";
         };
       };
     };

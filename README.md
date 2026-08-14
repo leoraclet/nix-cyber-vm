@@ -30,8 +30,8 @@ nix run .#microvm
 just run
 ```
 
-- USERNAME: `test`
-- PASSWORD: Same as USERNAME
+- **USERNAME**: `test`
+- **PASSWORD**: Same as USERNAME
 
 You can clean the VM using:
 

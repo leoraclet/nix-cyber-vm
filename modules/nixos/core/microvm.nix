@@ -49,12 +49,10 @@
             tag = "home";
             # Source path can be absolute or relative
             # to /var/lib/microvms/$hostName
+            securityModel = "passthrough";
+            posixAcl = true;
             source = "${config.myConfig.mountPoint}";
-            mountPoint =
-              if config.myConfig.userName != "root" then
-                "/home/${config.myConfig.userName}/shared"
-              else
-                "/root/shared";
+            mountPoint = "/home/${config.myConfig.userName}/Public";
           }
           {
             # use proto = "virtiofs" for MicroVMs that are started by systemd
@@ -78,10 +76,7 @@
   # ╭──────────────────────────────────────────╮
   # │ MICROVM PACKAGE                          │
   # ╰──────────────────────────────────────────╯
-  perSystem =
-    { ... }:
-    {
-      # nix run .#microvm
-      packages.microvm = self.nixosConfigurations.microvm.config.microvm.declaredRunner;
-    };
+  perSystem = { ... }: {
+    packages.microvm = self.nixosConfigurations.microvm.config.microvm.declaredRunner;
+  };
 }

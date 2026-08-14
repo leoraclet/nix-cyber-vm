@@ -1,26 +1,14 @@
-{
-  inputs,
-  self,
-  ...
-}:
-let
-  fm = inputs.self.modules;
-in
-{
-  flake.homeConfigurations.microvm = inputs.home-manager.lib.homeManagerConfiguration {
-    modules = with fm.homeManager; [
-      host-microvm
-    ];
-  };
-
-  # nixos-rebuild build-vm --flake .#microvm
-  # nix build .#nixosConfigurations.microvm.config.system.build.vm
+{ inputs, self, ... }: {
+  # ╭──────────────────────────────────────────╮
+  # │ NIXOS CONFIGURATION                      │
+  # ╰──────────────────────────────────────────╯
   flake.nixosConfigurations.microvm = inputs.nixpkgs.lib.nixosSystem {
     modules =
-      with fm.nixos;
+      with self.modules.nixos;
       [
         host-microvm
         hmModule
+        microvm
 
         # ╭──────────────────────────────────────────╮
         # │ CORE                                     │
@@ -56,33 +44,30 @@ in
         # web-tools
         wordlists
       ]
-      ++ (with inputs.self.modules.generic; [ userConfig ]);
-  };
-
-  flake.modules.homeManager.host-microvm = { ... }: {
-    imports = with fm.homeManager; [
-      xdg
-      librewolf
-      vscodium
-      kitty
-    ];
+      ++ (with inputs.self.modules.generic; [
+        userConfig
+      ]);
   };
 
   flake.modules.nixos.host-microvm =
     { pkgs, config, ... }:
     {
-      imports = [
-        inputs.microvm.nixosModules.microvm
-      ];
-
+      # ╭──────────────────────────────────────────╮
+      # │ HOME-MANAGER CONFIGURATION               │
+      # ╰──────────────────────────────────────────╯
       home-manager.users.${config.myConfig.userName} = {
         imports =
-          with fm.homeManager;
-          [ host-microvm ] ++ (with inputs.self.modules.generic; [ userConfig ]);
+          with self.modules.homeManager;
+          [
+            xdg
+            librewolf
+            vscodium
+            kitty
+          ]
+          ++ (with inputs.self.modules.generic; [
+            userConfig
+          ]);
       };
-
-      nixpkgs.hostPlatform = "x86_64-linux";
-      system.stateVersion = config.myConfig.stateVersion;
 
       # ╭──────────────────────────────────────────╮
       # │ USER CONFIGURATION                       │
@@ -103,85 +88,10 @@ in
         ];
       };
 
+      # ╭──────────────────────────────────────────╮
+      # │ DESKTOP CONFIGURATION                    │
+      # ╰──────────────────────────────────────────╯
       services.displayManager.autoLogin.user = config.myConfig.userName;
       services.getty.autologinUser = config.myConfig.userName;
-
-      # ╭──────────────────────────────────────────╮
-      # │ MICROVM CONFIGURATION                    │
-      # ╰──────────────────────────────────────────╯
-      # https://microvm-nix.github.io/microvm.nix/options.html
-      microvm = {
-        # Enable writable nix store overlay so nix-daemon works.
-        # This is required for home-manager activation.
-        # Uses tmpfs by default (ephemeral), which is fine since we
-        # don't build anything in the VM.
-        writableStoreOverlay = "/nix/.rw-store";
-
-        graphics.enable = config.hardware.graphics.enable;
-        vcpu = 4;
-        mem = 4096;
-        # https://microvm-nix.github.io/microvm.nix/interfaces.html
-        interfaces = [
-          {
-            type = "user";
-            id = "vm-test1";
-            mac = "02:00:00:00:00:01";
-          }
-        ];
-        forwardPorts = [
-          {
-            from = "host";
-            host.port = 2222;
-            guest.port = 22;
-          }
-        ];
-        volumes = [
-          {
-            mountPoint = "/var";
-            image = "var.img";
-            size = 8192; # MB
-          }
-        ];
-        # https://microvm-nix.github.io/microvm.nix/shares.html
-        shares = [
-          {
-            proto = "9p";
-            tag = "home";
-            # Source path can be absolute or relative
-            # to /var/lib/microvms/$hostName
-            source = "/home/";
-            mountPoint =
-              if config.myConfig.userName != "root" then
-                "/home/${config.myConfig.userName}/shared"
-              else
-                "/root/shared";
-          }
-          {
-            # use proto = "virtiofs" for MicroVMs that are started by systemd
-            proto = "9p";
-            tag = "ro-store";
-            # a host's /nix/store will be picked up so that no
-            # squashfs/erofs will be built for it.
-            source = "/nix/store";
-            mountPoint = "/nix/.ro-store";
-          }
-        ];
-        # https://microvm-nix.github.io/microvm.nix/devices.html
-        devices = [ ];
-
-        # "qemu" has 9p built-in!
-        hypervisor = "qemu";
-        socket = "control.socket";
-      };
-    };
-
-  # ╭──────────────────────────────────────────╮
-  # │ MICROVM PACKAGE                          │
-  # ╰──────────────────────────────────────────╯
-  perSystem =
-    { ... }:
-    {
-      # nix run .#microvm
-      packages.microvm = self.nixosConfigurations.microvm.config.microvm.declaredRunner;
     };
 }

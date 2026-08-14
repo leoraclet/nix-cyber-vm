@@ -26,6 +26,7 @@ in
         # │ CORE                                     │
         # ╰──────────────────────────────────────────╯
         env
+        nix
         locale
         networking
         sudo-security
@@ -97,6 +98,9 @@ in
         extraGroups = [
           "wheel"
         ];
+        openssh.authorizedKeys.keys = [
+          "ssh-rsa REDACTED"
+        ];
       };
 
       services.displayManager.autoLogin.user = config.myConfig.userName;
@@ -117,7 +121,20 @@ in
         vcpu = 4;
         mem = 4096;
         # https://microvm-nix.github.io/microvm.nix/interfaces.html
-        interfaces = [ ];
+        interfaces = [
+          {
+            type = "user";
+            id = "vm-test1";
+            mac = "02:00:00:00:00:01";
+          }
+        ];
+        forwardPorts = [
+          {
+            from = "host";
+            host.port = 2222;
+            guest.port = 22;
+          }
+        ];
         volumes = [
           {
             mountPoint = "/var";

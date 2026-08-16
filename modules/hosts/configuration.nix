@@ -10,7 +10,10 @@
         microvm
 
         env
+        audio
+        power
         user
+        theme
         nix
         locale
         direnv
@@ -21,8 +24,8 @@
         # │ DESKTOP                                  │
         # ╰──────────────────────────────────────────╯
         # lxqt-desktop
-        # xfce-desktop
-        qtile-desktop
+        xfce-desktop
+        # qtile-desktop
 
         # ╭──────────────────────────────────────────╮
         # │ CYBER                                    │
@@ -48,6 +51,8 @@
           librewolf
           vscodium
           dev
+          cli
+          shell
           kitty
         ];
       };

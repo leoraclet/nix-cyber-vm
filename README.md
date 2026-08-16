@@ -8,6 +8,10 @@ machine.
 This was inspired by [this post](https://jeancharles.quillet.org/posts/2023-01-16-Basic-nix-vm-for-just-anything.html)
 and my needs for quick cyber VM during CTF.
 
+> [!important]
+> For lightweight hacking environments without a VM, check out my
+[Nix Cyber Templates repository](https://github.com/leoraclet/nix-cyber-templates).
+
 ## Usage
 
 First, clone the repository:
@@ -58,5 +62,10 @@ Powered by:
 
 ## Resources
 
-For lightweight hacking environments without a VM, check out my
-[Nix Cyber Templates repository](https://github.com/leoraclet/nix-cyber-templates).
+This repo is based on and inspired of :
+
+- [Athena-OS/athena-nix](https://github.com/Athena-OS/athena-nix/)
+- [jecaro/simple-nix-vm](https://github.com/jecaro/simple-nix-vm)
+- [fabaff/nix-security-box](https://github.com/fabaff/nix-security-box)
+- [redcode-labs/RedNix](https://github.com/redcode-labs/RedNix)
+- [balsoft/kalinix](https://github.com/balsoft/kalinix)

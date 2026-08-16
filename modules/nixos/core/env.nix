@@ -2,7 +2,7 @@
   flake.modules.nixos.env = { ... }: {
     environment = {
       sessionVariables = {
-        EDITOR = "nano";
+        EDITOR = "micro";
         BROWSER = "librewolf";
         SHELL = "fish";
         TERMINAL = "kitty";

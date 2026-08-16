@@ -1,11 +1,10 @@
 {
   flake.modules.nixos.user = { pkgs, config, ... }: {
-    programs.fish.enable = true;
     services.getty.autologinUser = config.myConfig.userName;
+    programs.fish.enable = true;
 
     users = {
       defaultUserShell = pkgs.fish;
-      # Allows to change the initial password to a more robust one after firt login.
       mutableUsers = true;
       groups.${config.myConfig.userName} = { };
 

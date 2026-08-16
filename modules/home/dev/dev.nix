@@ -5,6 +5,9 @@
       imports = with self.modules.homeManager; [
         micro
         fresh-editor
+        helix
+        vscodium
+        zed
       ];
 
       home.packages = with pkgs; [

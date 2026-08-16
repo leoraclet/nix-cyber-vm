@@ -1,5 +1,9 @@
 { ... }: {
   flake.modules.nixos.networking = { config, ... }: {
+    users.users.${config.myConfig.userName} = {
+      extraGroups = [ "networkmanager" ];
+    };
+
     networking = {
       hostName = config.myConfig.userName;
       networkmanager.enable = true;

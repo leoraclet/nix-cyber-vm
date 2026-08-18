@@ -29,7 +29,13 @@
           { name = "zsh-users/zsh-autosuggestions"; }
           { name = "zsh-users/zsh-history-substring-search"; }
           { name = "zsh-users/zsh-syntax-highlighting"; }
-          # { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } # Uncomment to use powerlevel10k plugin
+          {
+            name = "romkatv/powerlevel10k";
+            tags = [
+              "as:theme"
+              "depth:1"
+            ];
+          } # Uncomment to use powerlevel10k plugin
         ];
       };
       shellAliases = {

@@ -47,6 +47,7 @@
   flake.modules.homeManager.xfce-desktop = { pkgs, ... }: {
     home.file.".config/xfce4/helpers.rc".text = ''
       WebBrowser=librewolf
+      FileManager=Thunar
       TerminalEmulator=kitty
     '';
     home.packages = with pkgs; [
@@ -70,7 +71,6 @@
           "Default/Numlock" = false;
         };
         thunar = {
-          "last-view" = "ThunarCompactView";
           "misc-show-delete-action" = true;
         };
         xsettings = {
@@ -85,10 +85,9 @@
           "Gtk/TitlebarMiddleClick" = "lower";
           "Gtk/ToolbarIconSize" = 3;
           "Gtk/ToolbarStyle" = "icons";
-          "Gtk/ButtonImages" = false;
+          "Gtk/ButtonImages" = true;
           "Gtk/DecorationLayout" = "menu:minimize,maximize,close";
           "Gtk/DialogsUseHeader" = false;
-          "Gtk/MenuImages" = "1";
         };
       };
     };

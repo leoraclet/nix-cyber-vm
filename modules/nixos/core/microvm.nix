@@ -16,6 +16,7 @@
         # Uses tmpfs by default (ephemeral), which is fine since we
         # don't build anything in the VM.
         writableStoreOverlay = "/nix/.rw-store";
+        optimize.enable = true;
 
         graphics.enable = config.hardware.graphics.enable;
         vcpu = 4;

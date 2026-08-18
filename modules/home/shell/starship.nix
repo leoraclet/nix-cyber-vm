@@ -1,8 +1,9 @@
 {
-  flake.modules.homeManager.starship = {
+  flake.modules.homeManager.starship = { ... }: {
     programs.starship = {
       enable = true;
       enableFishIntegration = true;
+      enableZshIntegration = true;
       settings = {
         command_timeout = 3000; # Timeout for commands executed
         # add_newline = false; # Print a new line at the start of the prompt

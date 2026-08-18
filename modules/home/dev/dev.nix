@@ -11,6 +11,10 @@
       ];
 
       home.packages = with pkgs; [
+        # Editor
+        neovim
+
+        # Tools
         gcc
         gnumake
 

@@ -1,8 +1,15 @@
 {
-  flake.modules.nixos.user = { pkgs, config, ... }: {
+  flake.modules.nixos.user-config = { pkgs, config, ... }: {
+    # ╭──────────────────────────────────────────╮
+    # │ SERVICES                                 │
+    # ╰──────────────────────────────────────────╯
+    services.flatpak.enable = true;
     services.getty.autologinUser = config.myConfig.userName;
-    programs.fish.enable = true;
 
+    # ╭──────────────────────────────────────────╮
+    # │ USER CONFIGURATION                       │
+    # ╰──────────────────────────────────────────╯
+    programs.fish.enable = true;
     users = {
       defaultUserShell = pkgs.fish;
       mutableUsers = true;

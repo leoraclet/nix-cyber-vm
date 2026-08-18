@@ -9,6 +9,7 @@
       zoxide
       alias
       cli
+      zellij
     ];
   };
 }

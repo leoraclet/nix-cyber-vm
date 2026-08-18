@@ -23,13 +23,6 @@
     programs.xfconf.enable = true;
     environment = {
       pathsToLink = [ "/share/backgrounds" ]; # TODO: https://github.com/NixOS/nixpkgs/issues/47173
-      systemPackages = with pkgs; [
-        xfce4-docklike-plugin
-        xfce4-genmon-plugin
-        xfce4-pulseaudio-plugin
-        xfce4-settings
-        xfce4-whiskermenu-plugin
-      ];
       xfce.excludePackages = with pkgs; [
         mousepad
         parole
@@ -66,8 +59,8 @@
       settings = {
         xfce4-keyboard-shortcuts = {
           "commands/custom/override" = true;
-          "commands/custom/r" = "xfce4-appfinder";
-          "commands/custom/t" = "exo-open --launch TerminalEmulator";
+          "commands/custom/<ALT>r" = "xfce4-appfinder";
+          "commands/custom/<ALT>t" = "exo-open --launch TerminalEmulator";
         };
         xfce4-session = {
           "general/SaveOnExit" = true;

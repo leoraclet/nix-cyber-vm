@@ -1,15 +1,15 @@
-{
+{ lib, ... }: {
   flake.modules.nixos.user-config = { pkgs, config, ... }: {
     # ╭──────────────────────────────────────────╮
     # │ SERVICES                                 │
     # ╰──────────────────────────────────────────╯
-    services.flatpak.enable = true;
     services.getty.autologinUser = config.myConfig.userName;
 
     # ╭──────────────────────────────────────────╮
     # │ USER CONFIGURATION                       │
     # ╰──────────────────────────────────────────╯
     programs.fish.enable = true;
+
     users = {
       defaultUserShell = pkgs.fish;
       mutableUsers = true;
@@ -19,10 +19,11 @@
         shell = pkgs.fish;
         useDefaultShell = true;
         isSystemUser = true;
-        uid = 1001;
+        # isNormalUser = true;
+        uid = lib.mkIf (config.myConfig.userName != "root") config.myConfig.hostID;
         createHome = true;
         group = config.myConfig.userName;
-        home = "/home/${config.myConfig.userName}";
+        home = if config.myConfig.userName != "root" then "/home/${config.myConfig.userName}" else "/root";
         initialPassword = config.myConfig.userName;
         extraGroups = [
           "wheel"

@@ -11,7 +11,6 @@
       env
       audio
       power
-      theme
       nix
       zsh
       locale

@@ -1,8 +1,9 @@
 { self, ... }: {
   # https://wiki.nixos.org/wiki/Xfce
   flake.modules.nixos.xfce-desktop = { pkgs, ... }: {
-    imports = [
-      self.modules.nixos.desktop
+    imports = with self.modules.nixos; [
+      desktop
+      theme
     ];
     home-manager.sharedModules = with self.modules.homeManager; [
       xfce-desktop
@@ -51,7 +52,6 @@
       TerminalEmulator=kitty
     '';
     home.packages = with pkgs; [
-      ristretto # A fast and lightweight picture-viewer for the Xfce desktop environment
       xfce4-appfinder # Appfinder for the Xfce4 Desktop Environment
       xfce4-panel # Panel for the Xfce desktop environment
       xfce4-power-manager # A power manager for the Xfce Desktop Environment
@@ -64,11 +64,16 @@
     xfconf = {
       enable = true;
       settings = {
+        xfce4-keyboard-shortcuts = {
+          "commands/custom/override" = true;
+          "commands/custom/r" = "xfce4-appfinder";
+          "commands/custom/t" = "exo-open --launch TerminalEmulator";
+        };
         xfce4-session = {
           "general/SaveOnExit" = true;
         };
         keyboards = {
-          "Default/Numlock" = false;
+          "Default/Numlock" = true;
         };
         thunar = {
           "misc-show-delete-action" = true;
@@ -77,10 +82,11 @@
           "Net/ThemeName" = "Sweet-Dark-v40";
           "Net/IconThemeName" = "Papirus-Dark";
           "Net/CursorBlink" = true;
-          "Net/CursorBlinkTime" = 1200;
+          "Net/CursorBlinkTime" = 500;
           "Net/DndDragThreshold" = 8;
           "Net/DoubleClickDistance" = 5;
           "Net/DoubleClickTime" = 400;
+          "Gtk/CursorThemeSize" = 20;
           "Gtk/CursorThemeName" = "Bibata-Modern-Ice";
           "Gtk/TitlebarMiddleClick" = "lower";
           "Gtk/ToolbarIconSize" = 3;

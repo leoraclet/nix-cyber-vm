@@ -1,17 +1,18 @@
 {
   flake.modules.nixos.nix = { config, ... }: {
-    nix.enable = true;
-    nix.settings = {
-      extra-experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      trusted-users = [
-        "root"
-        "wheel"
-
-        config.myConfig.userName
-      ];
+    documentation.enable = false;
+    nix = {
+      enable = true;
+      settings = {
+        extra-experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
+        trusted-users = [
+          "wheel"
+          config.myConfig.userName
+        ];
+      };
     };
 
     nixpkgs.hostPlatform = "x86_64-linux";

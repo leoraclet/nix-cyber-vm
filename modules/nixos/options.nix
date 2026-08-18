@@ -3,23 +3,28 @@
     options.myConfig = {
       userName = lib.mkOption {
         type = lib.types.str;
-        default = lib.mkDefault "test";
+        default = lib.mkDefault "root";
       };
       stateVersion = lib.mkOption {
         type = lib.types.str;
         default = lib.mkDefault "26.05";
       };
-      mountPoint = lib.mkOption {
+      sharedDirectory = lib.mkOption {
         type = lib.types.str;
         default = lib.mkDefault "/home";
+      };
+      hostID = lib.mkOption {
+        type = lib.types.int;
+        default = lib.mkDefault 1000;
       };
     };
 
     config = {
       myConfig = {
-        userName = "test";
-        stateVersion = "26.05";
-        mountPoint = "/home/leonne";
+        userName = lib.mkDefault "test";
+        stateVersion = lib.mkDefault "26.05";
+        sharedDirectory = lib.mkDefault "/home/leonne";
+        hostID = lib.mkDefault 1001;
       };
     };
   };

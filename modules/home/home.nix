@@ -21,7 +21,8 @@
             home = {
               username = config.myConfig.userName;
               preferXdgDirectories = true;
-              homeDirectory = "/home/${config.myConfig.userName}";
+              homeDirectory =
+                if config.myConfig.userName != "root" then "/home/${config.myConfig.userName}" else "/root";
               stateVersion = nixosConfig.system.stateVersion;
             };
           }

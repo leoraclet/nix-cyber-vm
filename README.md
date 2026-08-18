@@ -48,8 +48,14 @@ just clean
 You can fully customize this VM's configuration by adding modules and updating the
 [`configuration.nix`](./modules/hosts/configuration.nix) file.
 
-You can also set user and other global options in the [`options.nix`](./modules/nixos/options.nix)
+You can also set the username and other global options in the [`options.nix`](./modules/nixos/options.nix)
 file.
+
+### Desktop
+
+By default, this VM configuration includes the XFCE desktop environment. However,
+you can opt for an alternative desktop environment or remove the graphical environment
+entirely to access the VM only via the terminal.
 
 ## Libraries
 

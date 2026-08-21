@@ -27,13 +27,14 @@
         mousepad
         parole
         ristretto
-        # xfce4-appfinder
-        # xfce4-notifyd
         xfce4-screenshooter
-        # xfce4-session
-        # xfce4-settings
+        xfce4-session
+        # xfce4-panel
         xfce4-taskmanager
         xfce4-terminal
+        # xfce4-appfinder
+        xfce4-notifyd
+        # xfce4-settings
       ];
     };
   };
@@ -46,17 +47,22 @@
     '';
     home.packages = with pkgs; [
       xfce4-appfinder # Appfinder for the Xfce4 Desktop Environment
-      xfce4-panel # Panel for the Xfce desktop environment
-      xfce4-power-manager # A power manager for the Xfce Desktop Environment
-      xfce4-session # Session manager for Xfce
-      xfce4-taskmanager # Easy to use task manager for Xfce
       xfdesktop # Xfce's desktop manager
       xfwm4 # Window manager for Xfce
     ];
 
+    # Set LibreWolf as the default browser
+    xdg.configFile."mimeapps.list".text = ''
+      [Default Applications]
+      x-scheme-handler/http=librewolf.desktop
+      x-scheme-handler/https=librewolf.desktop
+      text/html=librewolf.desktop
+    '';
+
     xfconf = {
       enable = true;
       settings = {
+        xfce4-panel = { };
         xfce4-keyboard-shortcuts = {
           "commands/custom/override" = true;
           "commands/custom/<ALT>r" = "xfce4-appfinder";

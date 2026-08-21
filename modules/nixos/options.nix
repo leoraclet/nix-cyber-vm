@@ -21,10 +21,10 @@
 
     config = {
       myConfig = {
-        userName = lib.mkDefault "test";
-        stateVersion = lib.mkDefault "26.05";
-        sharedDirectory = lib.mkDefault "/home/leonne";
-        hostUID = lib.mkDefault 1001;
+        userName = lib.mkDefault "test"; # User
+        stateVersion = lib.mkDefault "26.05"; # NixOS version
+        sharedDirectory = lib.mkDefault "/home/leonne"; # Host directory to share
+        hostUID = lib.mkDefault 1001; # Host user ID
       };
     };
   };

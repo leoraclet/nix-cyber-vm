@@ -48,8 +48,29 @@ just clean
 You can fully customize this VM's configuration by adding modules and updating the
 [`configuration.nix`](./modules/hosts/configuration.nix) file.
 
-You can also set the username and other global options in the [`options.nix`](./modules/nixos/options.nix)
+You can also set the user(name) and other global options in the [`options.nix`](./modules/nixos/options.nix)
 file.
+
+```nix
+{ 
+    # [...]
+    config = {
+      myConfig = {
+        userName = lib.mkDefault "test";                # User
+        stateVersion = lib.mkDefault "26.05";           # NixOS version
+        sharedDirectory = lib.mkDefault "/home/leonne"; # Host directory to share
+        hostUID = lib.mkDefault 1001;                   # Host user ID
+      };
+    };
+  };
+}
+```
+
+> [!warning]
+> I recommend using the `root` user when working with this VM without a graphical
+> interface. If you're using a graphical interface, you can use any other username
+> you prefer. Some of this behavior is related to how the shared directory is
+> mounted inside the VM.
 
 ### Desktop
 

@@ -20,7 +20,7 @@
         useDefaultShell = true;
         isSystemUser = true;
         # isNormalUser = true;
-        uid = lib.mkIf (config.myConfig.userName != "root") config.myConfig.hostID;
+        uid = lib.mkIf (config.myConfig.userName != "root") config.myConfig.hostUID;
         createHome = true;
         group = config.myConfig.userName;
         home = if config.myConfig.userName != "root" then "/home/${config.myConfig.userName}" else "/root";

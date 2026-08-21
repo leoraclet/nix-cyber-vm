@@ -8,7 +8,7 @@
     home.shellAliases = {
       # [ ls ]
       cls = "clear";
-      ls = "${lib.getExe pkgs.eza} --icons";
+      ls = "${lib.getExe pkgs.eza} --color=always --long --git --icons=always --group-directories-first -h --hyperlink";
       li = "ls -l";
       ll = "ls -la";
       la = "ls -a";
@@ -23,7 +23,6 @@
       cd = "z";
       nsh = "nix-shell --command 'fish' --packages";
       nix-shell = "nix-shell --run '$SHELL'";
-
     };
   };
 }

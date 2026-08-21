@@ -4,6 +4,7 @@
       enable = true;
       enableFishIntegration = true;
       enableZshIntegration = true;
+      enableNushellIntegration = true;
       options = [ ];
     };
   };

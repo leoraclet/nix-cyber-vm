@@ -10,6 +10,7 @@
       alias
       cli
       zellij
+      nushell
     ];
   };
 }
